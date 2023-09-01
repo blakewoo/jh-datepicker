@@ -115,8 +115,6 @@ const JH_datepicker = (function () {
 
     JH_datepicker.prototype.drawTbody = function (tbody) {
         let targetMonthFirstDay = new Date(this.targetDate.getFullYear(), this.targetDate.getMonth(), 1);
-        console.log(targetMonthFirstDay)
-        console.log(targetMonthFirstDay.getDay())
         let targetMonthLastDay = new Date(this.targetDate.getFullYear(), this.targetDate.getMonth()+1, 0);
 
         let cnt = 0
