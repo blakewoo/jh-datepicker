@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='../src/codebase/datepicker.css' />
+    <script src="../src/codebase/datepicker.js"></script>
+</head>
+<body>
+    <input type="button" id="testButton" value="클릭"/>
+    <div id="targetDate"></div>
+    <script>
+        document.getElementById("testButton").addEventListener("click",function (event){
+            let example = new JH_datepicker(event.clientX+200,event.clientY,new Date(),event.currentTarget,new Date(2023,8,5),new Date(2023,9,5))
+            example.getDay = function (day) {
+                document.getElementById("targetDate").innerText = day
+            }
+        })
+    </script>
+</body>
+</html>
