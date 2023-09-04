@@ -10,13 +10,7 @@ const JH_datepicker = (function () {
         this.isLimit = !!(limitStartDate || limitEndDate);
         this.limitStartDate = limitStartDate
         this.limitEndDate = limitEndDate
-        this.container = this.paint(targetDate)
-        this.button = button
-        window.addEventListener('click', function (e) {
-            if(e.target !== this.container && e.target !== this.button) {
-                this.container.remove()
-            }
-        }.bind(this))
+        this.paint(targetDate)
     }
 
     JH_datepicker.prototype.paint = function (Date) {
