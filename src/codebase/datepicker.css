@@ -8,6 +8,11 @@
     padding: 10px;
 }
 
+.jh_datepicker_delete_span:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .jh_datepicker_div_table {
 
 }

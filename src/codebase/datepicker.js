@@ -30,6 +30,17 @@ const JH_datepicker = (function () {
         datepickerContainerDiv.style.left = this.xPoint-100+"px"
         datepickerContainerDiv.style.top = this.yPoint+"px"
 
+        let deleteButton = document.createElement("span")
+        deleteButton.innerText = "X"
+        deleteButton.classList.add("jh_datepicker_delete_span")
+        deleteButton.style.position = "absolute"
+        deleteButton.style.left = this.xPoint-65+"px"
+        deleteButton.style.top = this.yPoint-16+"px"
+        deleteButton.addEventListener("click",function (event) {
+            event.currentTarget.parentNode.remove()
+        })
+        datepickerContainerDiv.appendChild(deleteButton)
+
         let datepickerTable = document.createElement("table")
         datepickerTable.classList.add("jh_datepicker_div_table")
 
