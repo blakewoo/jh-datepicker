@@ -30,16 +30,17 @@ const JH_datepicker = (function () {
         datepickerContainerDiv.style.left = this.xPoint-100+"px"
         datepickerContainerDiv.style.top = this.yPoint+"px"
 
-        let deleteButton = document.createElement("span")
-        deleteButton.innerText = "X"
-        deleteButton.classList.add("jh_datepicker_delete_span")
-        deleteButton.style.position = "absolute"
-        deleteButton.style.left = this.xPoint-65+"px"
-        deleteButton.style.top = this.yPoint-16+"px"
-        deleteButton.addEventListener("click",function (event) {
-            event.currentTarget.parentNode.remove()
-        })
-        datepickerContainerDiv.appendChild(deleteButton)
+        // let deleteDiv = document.createElement("div")
+        // deleteDiv.classList.add("jh_datepicker_delete_container_div")
+        //
+        // let deleteButton = document.createElement("span")
+        // deleteButton.innerText = "X"
+        // deleteButton.classList.add("jh_datepicker_delete_span")
+        // deleteButton.addEventListener("click",function (event) {
+        //     event.currentTarget.parentNode.remove()
+        // })
+        // deleteDiv.appendChild(deleteButton)
+        // datepickerContainerDiv.appendChild(deleteDiv)
 
         let datepickerTable = document.createElement("table")
         datepickerTable.classList.add("jh_datepicker_div_table")
@@ -68,12 +69,20 @@ const JH_datepicker = (function () {
         rightArrowTd.addEventListener("click",this.nextMonthEvent.bind(this))
 
         let currentMonthViewTd = document.createElement("td")
-        currentMonthViewTd.colSpan = 5
+        currentMonthViewTd.colSpan = 4
         currentMonthViewTd.innerHTML = this.targetDate.getFullYear()+"년 "+(this.targetDate.getMonth()+1)+"월"
+
+        let deleteDatepicker = document.createElement("td")
+        deleteDatepicker.innerText = "X"
+        deleteDatepicker.classList.add("jh_datepicker_div_table_thead_delete")
+        deleteDatepicker.addEventListener("click",function (event) {
+            event.currentTarget.parentNode.parentNode.parentNode.parentNode.remove()
+        })
 
         titleArrowTr.appendChild(leftArrowTd)
         titleArrowTr.appendChild(currentMonthViewTd)
         titleArrowTr.appendChild(rightArrowTd)
+        titleArrowTr.appendChild(deleteDatepicker)
 
         let dayHeadTr = document.createElement("tr")
         let td1 = document.createElement("td")
