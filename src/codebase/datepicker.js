@@ -1,5 +1,15 @@
 const JH_datepicker = (function () {
-    function JH_datepicker (x,y,targetDate,button,limitStartDate=null,limitEndDate=null) {
+
+    /**
+     *
+     * @param x : left-position
+     * @param y : top-position
+     * @param targetDate : targetDate
+     * @param limitStartDate : limit-start-date
+     * @param limitEndDate : limit-end-date
+     * @constructor
+     */
+    function JH_datepicker (x,y,targetDate,limitStartDate=null,limitEndDate=null) {
         this.xPoint = x
         this.yPoint = y
         this.containDiv = null
@@ -29,18 +39,6 @@ const JH_datepicker = (function () {
         datepickerContainerDiv.classList.add("jh_datepicker_div")
         datepickerContainerDiv.style.left = this.xPoint-100+"px"
         datepickerContainerDiv.style.top = this.yPoint+"px"
-
-        // let deleteDiv = document.createElement("div")
-        // deleteDiv.classList.add("jh_datepicker_delete_container_div")
-        //
-        // let deleteButton = document.createElement("span")
-        // deleteButton.innerText = "X"
-        // deleteButton.classList.add("jh_datepicker_delete_span")
-        // deleteButton.addEventListener("click",function (event) {
-        //     event.currentTarget.parentNode.remove()
-        // })
-        // deleteDiv.appendChild(deleteButton)
-        // datepickerContainerDiv.appendChild(deleteDiv)
 
         let datepickerTable = document.createElement("table")
         datepickerTable.classList.add("jh_datepicker_div_table")
