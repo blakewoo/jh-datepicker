@@ -4,18 +4,18 @@ const JH_datepicker = (function () {
      *
      * @param x : left-position
      * @param y : top-position
-     * @param targetDate : targetDate
+     * @param targetDate : Date
      * @param limitStartDate : limit-start-date
      * @param limitEndDate : limit-end-date
      * @constructor
      */
-    function JH_datepicker (x,y,targetDate,limitStartDate=null,limitEndDate=null) {
+    function JH_datepicker (x,y,targetDate=new Date(),limitStartDate=null,limitEndDate=null) {
         this.xPoint = x
         this.yPoint = y
         this.containDiv = null
         this.targetDate = targetDate
-        if(limitStartDate>limitEndDate) {
-            throw console.error("Limit date error!")
+        if((limitStartDate&&limitEndDate)&&(limitStartDate>limitEndDate)) {
+            return console.error("[ERROR] The selectable start time is after the selectable end time.")
         }
         this.isLimit = !!(limitStartDate || limitEndDate);
         this.limitStartDate = limitStartDate
@@ -148,7 +148,7 @@ const JH_datepicker = (function () {
             tempTd.classList.add("jh_datepicker_div_table_tbody_td")
 
             let tempTdDate = new Date(targetMonthFirstDay.getFullYear(),targetMonthFirstDay.getMonth(),day)
-            if(this.isLimit && (tempTdDate<this.limitStartDate || tempTdDate>this.limitEndDate)) {
+            if(this.isLimit && ((this.limitStartDate&&tempTdDate<this.limitStartDate) || (this.limitEndDate&&tempTdDate>this.limitEndDate))) {
                 tempTd.classList.add("disabled")
             }
             else {
@@ -176,7 +176,7 @@ const JH_datepicker = (function () {
             }
             tempTd.classList.add("jh_datepicker_div_table_tbody_td")
             let tempTdDate = new Date(targetMonthFirstDay.getFullYear(),targetMonthFirstDay.getMonth(),day)
-            if(this.isLimit && (tempTdDate<this.limitStartDate || tempTdDate>this.limitEndDate)) {
+            if(this.isLimit && ((this.limitStartDate&&tempTdDate<this.limitStartDate) || (this.limitEndDate&&tempTdDate>this.limitEndDate))) {
                 tempTd.classList.add("disabled")
             }
             else {
