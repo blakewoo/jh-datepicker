@@ -23,6 +23,11 @@ const JH_datepicker = (function () {
         this.paint(targetDate)
     }
 
+    /**
+     *
+     * @param Date
+     * @returns {HTMLDivElement}
+     */
     JH_datepicker.prototype.paint = function (Date) {
         if(Date) {
             this.targetDate = Date
