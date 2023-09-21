@@ -33,19 +33,19 @@ document.getElementById("exampleId").addEventListener("click",function(event){
         }
 })
 ```
-###X_COORDINATE
+### X_COORDINATE
 The X-coordinate where the Datepicker will appear.   
-###Y_COORDINATE
+### Y_COORDINATE
 The Y-coordinate where the Datepicker will appear.   
-###DEFAULT_MONTH
+### DEFAULT_MONTH
 The initial year and month, received as a date object, with the default value being today.   
-###LIMIT_START_DATE
+### LIMIT_START_DATE
 You cannot select a date before the specified date. The default value is null, meaning there is no starting date limitation.   
-###LIMIT_END_DATE
+### LIMIT_END_DATE
 You cannot select a date after the specified date. The default value is null, meaning there is no ending date limitation.   
 
 
-###getDay function
+### getDay function
 If you want to retrieve information about the selected date, you can call the getDay function on the created object and obtain the first argument. When passed as a date object, it represents the midnight time of the user's reference date.
 
 
