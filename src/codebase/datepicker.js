@@ -60,6 +60,33 @@ const JH_datepicker = (function () {
 
         let thead = document.createElement("thead")
         thead.classList.add("jh_datepicker_div_table_thead")
+        let yearArrowTr = document.createElement("tr")
+        let leftYearArrowTd = document.createElement("td")
+        leftYearArrowTd.innerHTML = "<"
+        leftYearArrowTd.classList.add("jh_datepicker_div_table_thead_prev")
+        leftYearArrowTd.addEventListener("click",this.prevYearEvent.bind(this))
+
+        let currentYearViewTd = document.createElement("td")
+        currentYearViewTd.colSpan = 4
+        currentYearViewTd.innerHTML = this.targetDate.getFullYear()+"년"
+
+        let rightYearArrowTd = document.createElement("td")
+        rightYearArrowTd.innerHTML = ">"
+        rightYearArrowTd.classList.add("jh_datepicker_div_table_thead_prev")
+        rightYearArrowTd.addEventListener("click",this.nextYearEvent.bind(this))
+
+        let deleteDatepicker = document.createElement("td")
+        deleteDatepicker.innerText = "X"
+        deleteDatepicker.classList.add("jh_datepicker_div_table_thead_delete")
+        deleteDatepicker.addEventListener("click",function (event) {
+            event.currentTarget.parentNode.parentNode.parentNode.parentNode.remove()
+        })
+
+        yearArrowTr.appendChild(leftYearArrowTd)
+        yearArrowTr.appendChild(currentYearViewTd)
+        yearArrowTr.appendChild(rightYearArrowTd)
+        yearArrowTr.appendChild(deleteDatepicker)
+
         let titleArrowTr = document.createElement("tr")
         let leftArrowTd = document.createElement("td")
         leftArrowTd.innerHTML = "<"
@@ -69,23 +96,15 @@ const JH_datepicker = (function () {
         let rightArrowTd = document.createElement("td")
         rightArrowTd.innerHTML = ">"
         rightArrowTd.classList.add("jh_datepicker_div_table_thead_after")
-        rightArrowTd.addEventListener("click",this.nextMonthEvent.bind(this))
+        rightArrowTd.addEventListener("click",this.prevMonthEvent.bind(this))
 
         let currentMonthViewTd = document.createElement("td")
         currentMonthViewTd.colSpan = 4
-        currentMonthViewTd.innerHTML = this.targetDate.getFullYear()+"년 "+(this.targetDate.getMonth()+1)+"월"
-
-        let deleteDatepicker = document.createElement("td")
-        deleteDatepicker.innerText = "X"
-        deleteDatepicker.classList.add("jh_datepicker_div_table_thead_delete")
-        deleteDatepicker.addEventListener("click",function (event) {
-            event.currentTarget.parentNode.parentNode.parentNode.parentNode.remove()
-        })
+        currentMonthViewTd.innerHTML = (this.targetDate.getMonth()+1)+"월"
 
         titleArrowTr.appendChild(leftArrowTd)
         titleArrowTr.appendChild(currentMonthViewTd)
         titleArrowTr.appendChild(rightArrowTd)
-        titleArrowTr.appendChild(deleteDatepicker)
 
         let dayHeadTr = document.createElement("tr")
         let td1 = document.createElement("td")
@@ -119,6 +138,7 @@ const JH_datepicker = (function () {
         dayHeadTr.appendChild(td6)
         dayHeadTr.appendChild(td7)
 
+        thead.appendChild(yearArrowTr)
         thead.appendChild(titleArrowTr)
         thead.appendChild(dayHeadTr)
 
@@ -197,6 +217,15 @@ const JH_datepicker = (function () {
         }
     }
 
+    JH_datepicker.prototype.prevYearEvent = function (event) {
+        let newTarget = new Date(this.targetDate.getFullYear()-1, this.targetDate.getMonth(), this.targetDate.getDate())
+        this.paint(newTarget)
+    }
+
+    JH_datepicker.prototype.nextYearEvent = function (event) {
+        let newTarget = new Date(this.targetDate.getFullYear()+1, this.targetDate.getMonth(), this.targetDate.getDate())
+        this.paint(newTarget)
+    }
     JH_datepicker.prototype.prevMonthEvent = function (event) {
         let newTarget = new Date(this.targetDate.getFullYear(), this.targetDate.getMonth() - 1, this.targetDate.getDate())
         this.paint(newTarget)
